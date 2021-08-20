@@ -14,9 +14,12 @@ const Swatches = (props: SwatchesProps) => (
 )
 
 const resolveSwatchComponent = (swatchData: SwatchData, index: number): ReactElement => {
-  return swatchData.swatch_type === "RGB" ?
-    <RgbSwatch {...swatchData} key={index}/> :
-    <HslSwatch {...swatchData} key={index}/>
+  switch (swatchData.swatch_type) {
+    case "RGB":
+      return <RgbSwatch {...swatchData} key={index}/>
+    case "HSL":
+      return <HslSwatch {...swatchData} key={index}/>
+  }
 }
 
 export default Swatches
